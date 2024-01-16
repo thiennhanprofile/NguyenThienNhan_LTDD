@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { SliderBox } from 'react-native-image-slider-box';
-import PropTypes from 'deprecated-react-native-prop-types';
 
 
 

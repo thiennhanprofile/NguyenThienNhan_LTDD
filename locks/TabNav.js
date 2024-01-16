@@ -2,9 +2,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import HomeScreen from "../screens/HomeScreen";
 import FindScreen from "../screens/FindScreen";
-import ChatScreen from "../screens/ChatScreen";
-import PostScreen from "../screens/ShoppingScreen";
 import SettingsScreen from "../screens/AddProduct";
+import ShoppingScreen from "../screens/ShoppingScreen";
+
 
 const Tab = createBottomTabNavigator();
 
@@ -31,19 +31,14 @@ const CustomTabBarButton = ({ children, onPress }) => (
   </TouchableOpacity>
 );
 
-const Tabs = () => {
+const TabNav = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarLabel: () => null, // Tắt label
         tabBarStyle: {
           position: "absolute",
-          bottom: 10,
-          left: 20,
-          right: 20,
-          elevation: 0,
           backgroundColor: "#ffffff",
-          borderRadius: 30,
           height: 70,
           ...style.shadow,
         },
@@ -109,27 +104,9 @@ const Tabs = () => {
           ),
         }}
       />
-      {/* <Tab.Screen
-        name="ChatScreen"
-        component={ChatScreen}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <Image
-              source={require("../assets/images/home.png")}
-              resizeMode="contain"
-              style={{
-                width: 30,
-                height: 30,
-                tintColor: "#fff",
-              }}
-            />
-          ),
-          tabBarButton: (props) => <CustomTabBarButton {...props} />,
-        }}
-      /> */}
       <Tab.Screen
         name="Giỏ hàng"
-        component={PostScreen}
+        component={ShoppingScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <View
@@ -158,7 +135,7 @@ const Tabs = () => {
         }}
       />
       <Tab.Screen
-        name="Cài đặt"
+        name="Thêm sản phẩm "
         component={SettingsScreen}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -181,7 +158,7 @@ const Tabs = () => {
               <Text
                 style={{ color: focused ? "#e32f45" : "#748c94", fontSize: 12 }}
               >
-                Cài đặt
+                Thêm sản phẩm
               </Text>
             </View>
           ),
@@ -203,4 +180,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default Tabs;
+export default TabNav;

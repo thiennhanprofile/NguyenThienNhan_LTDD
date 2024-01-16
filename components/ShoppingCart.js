@@ -3,7 +3,7 @@ import { View, Text, FlatList } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
-const ShoppingScreen = ({ route }) => {
+const ShoppingCart = ({ route }) => {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
@@ -30,24 +30,26 @@ const ShoppingScreen = ({ route }) => {
   };
 
   const renderCartItem = ({ item }) => (
-  <View>
-    <Text>{item.name}</Text>
-    <Text>Giá: {item.price} $</Text>
-    {/* Kiểm tra nếu có thuộc tính 'id' mới sử dụng nó */}
-    {item.id && <Text>ID: {item.id.toString()}</Text>}
-  </View>
-);
-
-  return (
     <View>
-      <Text>Danh sách sản phẩm trong giỏ hàng</Text>
-      <FlatList
-        data={cart}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={renderCartItem}
-      />
+      <Text>{item.name}</Text>
+      <Text>Giá: {item.price} $</Text>
+      {/* Các thông tin khác của sản phẩm */}
     </View>
   );
+
+  <FlatList
+  data={cart}
+  keyExtractor={(item) => (item && item.id ? item.id.toString() : Math.random().toString())}
+  renderItem={({ item }) => {
+    return (
+      <View>
+        <Text>{item.name}</Text>
+        <Text>Giá: {item.price} $</Text>
+        {/* Các thông tin khác của sản phẩm */}
+      </View>
+    );
+  }}
+/>
 };
 
-export default ShoppingScreen;
+export default ShoppingCart;

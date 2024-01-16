@@ -5,47 +5,15 @@ import {
   Pressable,
   TextInput,
   TouchableOpacity,
-  Alert
 } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import colors from "../assets/Colors/colors";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import { Ionicons } from "@expo/vector-icons";
 import Button from "../assets/Button/button";
 
-const Login = ({ navigation }) => {
-  const [username, setusername] = useState("");
-  const [password, setpassword] = useState("");
-  const doLogin =async  () => {
-    // Kiểm tra tk mk
-    if (username.length == 0) {
-      alert("Chưa nhập Username");
-      return;
-    }
-    if (password.length == 0) {
-      alert("Chưa nhập Password");
-      return;
-    }
-    // Lấy dữ liệu
-    try {
-      const response = await fetch(`https://65a4e55452f07a8b4a3de282.mockapi.io/api/account?username=${username}&password=${password}`);
-      const data = await response.json();
-
-      if (data.length === 1) {
-          // Lưu thông tin đăng nhập vào AsyncStorage
-          await AsyncStorage.setItem('loginInfo', JSON.stringify(data[0]));
-          navigation.navigate('TabNav'); // Chuyển hướng đến màn hình sau khi đăng nhập thành công
-      } else {
-          Alert.alert('Đăng nhập không thành công', 'Sai tên đăng nhập hoặc mật khẩu');
-      }
-  } catch (error) {
-      console.error('Lỗi khi đăng nhập:', error);
-      Alert.alert('Đã xảy ra lỗi khi đăng nhập');
-  }
-
-  };
-
+const Signup = ({ navigation }) => {
+  const [isPasswordShown, setIsPasswordShown] = useState(false);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
       <View style={{ flex: 1, marginHorizontal: 22 }}>
@@ -58,9 +26,11 @@ const Login = ({ navigation }) => {
               color: colors.black,
             }}
           >
-            Đăng nhập tài khoản
+            Tạo tài khoản !
           </Text>
         </View>
+
+        
 
         <View style={{ marginBottom: 12 }}>
           <Text
@@ -81,17 +51,15 @@ const Login = ({ navigation }) => {
               borderWidth: 1,
               borderRadius: 8,
               alignItems: "center",
-              justifyContent: "center",
+              flexDirection: "row",
+              justifyContent: "space-between",
               paddingLeft: 22,
             }}
           >
             <TextInput
-              placeholder="Vui lòng nhập tên tài khoản "
-              onChangeText={(txt) => {
-                setusername(txt);
-              }}
+              placeholder="Vui lòng nhập tên tài khoản"
               style={{
-                width: "100%",
+                width: "80%",
               }}
             />
           </View>
@@ -122,25 +90,50 @@ const Login = ({ navigation }) => {
           >
             <TextInput
               placeholder="Vui lòng nhập mật khẩu"
-              onChangeText={(txt) => {
-                setpassword(txt);
-              }}
+              secureTextEntry={isPasswordShown}
               style={{
                 width: "100%",
               }}
             />
+
+            <TouchableOpacity
+              onPress={() => setIsPasswordShown(!isPasswordShown)}
+              style={{
+                position: "absolute",
+                right: 12,
+              }}
+            >
+              {isPasswordShown == true ? (
+                <Ionicons name="eye-off" size={24} color={colors.black} />
+              ) : (
+                <Ionicons name="eye" size={24} color={colors.black} />
+              )}
+            </TouchableOpacity>
           </View>
         </View>
 
+        <View
+          style={{
+            flexDirection: "row",
+            marginVertical: 6,
+          }}
+        >
+          
+
+        </View>
+
         <Button
-          title="Đăng nhập"
-          onPress={doLogin}
+          title="Đăng ký"
           filled
           style={{
             marginTop: 18,
             marginBottom: 4,
           }}
         />
+
+        
+
+        
 
         <View
           style={{
@@ -150,9 +143,9 @@ const Login = ({ navigation }) => {
           }}
         >
           <Text style={{ fontSize: 16, color: colors.black }}>
-            Bạn không có tài khoản ?{" "}
+            Bạn đã có tài khoản ?
           </Text>
-          <Pressable onPress={() => navigation.navigate("Signin")}>
+          <Pressable onPress={() => navigation.navigate("Login")}>
             <Text
               style={{
                 fontSize: 16,
@@ -161,7 +154,7 @@ const Login = ({ navigation }) => {
                 marginLeft: 6,
               }}
             >
-              Đăng kí ngay !
+              Đăng nhập ngay
             </Text>
           </Pressable>
         </View>
@@ -170,4 +163,4 @@ const Login = ({ navigation }) => {
   );
 };
 
-export default Login;
+export default Signup;
