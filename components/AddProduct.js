@@ -6,7 +6,6 @@ import colors from "../assets/Colors/colors";
 import Button from "../assets/Button/button";
 
 
-
 const AddProduct = ({ navigation, updateProductList }) => {
   const [tenSP, setTenSP] = useState("");
   const [gia, setGia] = useState("");
@@ -55,18 +54,8 @@ const AddProduct = ({ navigation, updateProductList }) => {
   };
 
   return (
-    // <View>
-    //     <Text>Thêm Sản Phẩm</Text>
-    //     <TextInput placeholder="Tên Sản Phẩm" onChangeText={(text) => setTenSP(text)} />
-    //     <TextInput placeholder="Giá Tiền" onChangeText={(text) => setGia(text)} />
-    //     <Image source={{ uri: imageUrl }} style={{ width: '100%', height: 150 }} />
-    //     <TextInput
-    //         placeholder="URL Hình Ảnh"
-    //         onChangeText={(url) => setImageUrl(url)}
-    //         value={imageUrl}
-    //     />
-    //     <Button title="Lưu" onPress={SaveProduct} />
-    // </View>
+  
+    
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
       <View style={{ flex: 1, marginHorizontal: 22 }}>
         <View style={{ marginBottom: 10 }}>
@@ -177,6 +166,7 @@ const AddProduct = ({ navigation, updateProductList }) => {
           }}
         />
       </View>
+
     </SafeAreaView>
   );
 };

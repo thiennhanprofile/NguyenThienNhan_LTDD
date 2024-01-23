@@ -1,5 +1,5 @@
 import ProductDetail from "./ProductDetail";
-import ShoppingCart from "./ShoppingCart";
+import ShoppingCart from "../backup/ShoppingCart";
 
 
 

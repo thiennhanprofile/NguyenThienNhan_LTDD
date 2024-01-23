@@ -7,8 +7,9 @@ import {
   ActivityIndicator,
   Dimensions,
   TextInput,
-  Button,
 } from "react-native";
+import Button from "../assets/Button/button";
+
 import React, { useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
@@ -52,7 +53,7 @@ const FindScreen = (props) => {
           resizeMode="contain"
         />
         <Text>
-          Tên SP: {item.name} -- Giá {item.price}
+          {item.name}  Giá:{item.price}$
         </Text>
       </View>
     );

@@ -2,9 +2,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import HomeScreen from "../screens/HomeScreen";
 import FindScreen from "../screens/FindScreen";
-import SettingsScreen from "../screens/AddProduct";
+import SettingsScreen from "../screens/AddProductScreen";
 import ShoppingScreen from "../screens/ShoppingScreen";
-
 
 const Tab = createBottomTabNavigator();
 

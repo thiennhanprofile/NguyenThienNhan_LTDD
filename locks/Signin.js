@@ -8,7 +8,6 @@ import {
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import colors from "../assets/Colors/colors";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import Button from "../assets/Button/button";
 
@@ -48,7 +47,7 @@ const Register = ({ navigation }) => {
       });
 
       if (registerResponse.ok) {
-        Alert.alert('Đăng ký thành công');
+        Alert.alert('Đăng ký thành công, đăng nhập ngay');
         navigation.navigate('Login'); // Chuyển hướng đến màn hình đăng nhập sau khi đăng ký thành công
       } else {
         Alert.alert('Đã xảy ra lỗi khi đăng ký');
